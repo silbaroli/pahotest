@@ -74,10 +74,10 @@ ui <- dashboardPage(skin = "blue",
 
 server <- function(input, output, session) {
 
-  mun <- read_sf("shapefile/MA_Municipios_2022.shp")
+  mun <- read_sf("MA_Municipios_2022.shp")
 
   data <- reactive({
-    db=readxl::read_excel("data/data.xlsx",sheet = "srag_20_22_test") %>%
+    db=readxl::read_excel("data.xlsx",sheet = "srag_20_22_test") %>%
       mutate(epiweek=epiweek(as.Date(dt_sin_pri,format="%d/%m/%Y"))) %>%
       mutate(count=ifelse(as.numeric(criterio)==1,1,0)) %>%
       mutate(male=ifelse(count==1 & cs_sexo=="M",1,0)) %>%
